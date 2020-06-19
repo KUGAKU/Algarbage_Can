@@ -17,14 +17,41 @@ for ( $i=1; $i<=$n; $i++ ) {
     }
 }
 
-//２進数化
 $squared = pow(2,$n);
-$binary_number = decbin($squared-1);
-var_dump($binary_number);
+$count = count(str_split(decbin($squared-1)));
+
+$understanding_sum_array = [];
+$book_array = [];
+$min_value_array = [];
 
 for ( $i=0; $i<$squared; $i++ ) {
+    for ( $j=0; $j<$count; $j++ ) {
+        //各bitとのbit演算結果の取得
+        if ( $i>> $j & 1 == 1 ) {
+            //購入する参考書の選択
+            array_push($book_array,$two_dimensional_array[$j+1]);
+        }
+    }
+    for ( $k=0; $k<count($book_array); $k++ ) {
+        //購入した参考書で得られる理解度を確認
+        for ( $l=0; $l<count($book_array[$k]); $l++ ) {
+            $understanding_sum_array[$l] = $understanding_sum_array[$l] + $book_array[$k][$l];
+        }
+    }
+    if ( count($understanding_sum_array) != 0 ) {
+        if ( min($understanding_sum_array) >= $x ) {
+            array_push($min_value_array,$understanding_sum_array[0]);
+        }
+    }
+    $understanding_sum_array = array();
+    $book_array = array();
+}
 
-    
+if ( count($min_value_array) != 0 ) {
+    echo(min($min_value_array))."\n";
+}
+else {
+    echo(-1)."\n";
 }
 
 ?>
