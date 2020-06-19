@@ -35,7 +35,12 @@ for ( $i=0; $i<$squared; $i++ ) {
     for ( $k=0; $k<count($book_array); $k++ ) {
         //購入した参考書で得られる理解度を確認
         for ( $l=0; $l<count($book_array[$k]); $l++ ) {
-            $understanding_sum_array[$l] = $understanding_sum_array[$l] + $book_array[$k][$l];
+            if ( $k==0 ) {
+                $understanding_sum_array[] = $book_array[$k][$l];;
+            }
+            else {
+                $understanding_sum_array[$l] = $understanding_sum_array[$l] + $book_array[$k][$l];
+            }
         }
     }
     if ( count($understanding_sum_array) != 0 ) {
