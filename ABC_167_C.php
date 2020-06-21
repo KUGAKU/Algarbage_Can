@@ -18,14 +18,14 @@ for ( $i=1; $i<=$n; $i++ ) {
 }
 
 $squared = pow(2,$n);
-$count = count(str_split(decbin($squared-1)));
+$count = count(str_split(decbin($squared)));
 
 $understanding_sum_array = [];
 $book_array = [];
 $min_value_array = [];
 
 for ( $i=0; $i<$squared; $i++ ) {
-    for ( $j=0; $j<$count; $j++ ) {
+    for ( $j=0; $j<=$count; $j++ ) {
         //各bitとのbit演算結果の取得
         if ( $i>> $j & 1 == 1 ) {
             //購入する参考書の選択
